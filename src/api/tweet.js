@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { stringify, v4 as uuidv4 } from 'uuid';
 import { TWEETS } from '../utils/constants';
 
 export function saveTweetApi(tweet, username) {
@@ -8,6 +8,6 @@ export function saveTweetApi(tweet, username) {
         username,
         createdAt: new Date(),
     };
-    localStorage.setItem(TWEET);
+    localStorage.setItem(TWEETS, JSON.stringify(tweetTemp));
     console.log(tweetTemp);
 }
