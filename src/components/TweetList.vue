@@ -1,30 +1,36 @@
+<!-- @format -->
+
 <template>
-  <div class="container">
-    <h1 class="text-center mb-4">Lista de Tweets</h1>
-    <div class="tweet" v-for="tweet in tweets" :key="tweet.id">
-        <p class="tweet__title">{{tweet.username}}</p>
-        <p class="tweet__text">{{tweet.tweet}}</p>
-        <span>{{tweet.createdAt}}</span>
+    <div class="container">
+        <h1 class="text-center mb-4">Lista de Tweets</h1>
+        <div class="tweet" v-for="tweet in tweets" :key="tweet.id">
+            <p class="tweet__title">{{ tweet.username }}</p>
+            <p class="tweet__text">{{ tweet.tweet }}</p>
+            <span>{{ formatDate(tweet.createdAt) }}</span>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
+import moment from 'moment';
+import 'moment/locale/es';
+
 export default {
     props: {
-        tweets: {
-            type: Array,
-            // required: true
-        }
+        tweets: Array,
     },
     setup(props) {
-        // console.log(props.tweets);
-        // return {
-        //     ...useFormTweet(),
-        //     tweets: this.tweets
-        // };
-    }
-}
+        const formatDate = (date) => {
+            return moment(date).format('DD/MM/YYYY HH:mm');
+            // .format('DD/MM/YYYY HH:mm:ss'); // formato de la fecha
+            // .fromNow(); // para mostrar la fecha en formato "hace x tiempo"
+        };
+
+        return {
+            formatDate,
+        };
+    },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -51,7 +57,7 @@ export default {
     }
 
     &__text {
-        color: gray
+        color: gray;
     }
 
     span {

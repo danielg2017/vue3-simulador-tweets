@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <template>
     <div class="tweet-form container" :class="{ open: showForm }">
         <form @submit.prevent="sendTweet">
