@@ -7,7 +7,7 @@
         :openCloseForm="openCloseForm"
         :reloadTweets="reloadTweets"
     />
-    <TweetList :tweets="tweets" />
+    <TweetList :tweets="tweets" :reloadTweets="reloadTweets" />
 </template>
 
 <script>
