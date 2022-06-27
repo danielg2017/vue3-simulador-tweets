@@ -20,16 +20,24 @@
 <script>
 import { ref } from 'vue';
 import { saveTweetApi } from '../api/tweet';
+
 export default {
     props: {
         showForm: Boolean,
+        openCloseForm: Function,
+        reloadTweets: Function,
     },
-    setup(prpops) {
+    setup(props) {
         let username = ref('');
         let tweet = ref('');
 
         const sendTweet = () => {
+            if (!tweet.value || !username.value) return;
             saveTweetApi(tweet.value, username.value);
+            tweet.value = '';
+            username.value = '';
+            props.reloadTweets();
+            props.openCloseForm();
         };
         return { sendTweet, username, tweet };
     },
